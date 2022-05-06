@@ -44,7 +44,7 @@ const authenticate = async (req, res) => {
 
     // Check if user is confirmed
     if(!user.confirmed) {
-        const error = new Error('You need to confirm their account');
+        const error = new Error('You need to confirm your account');
         return res.status(403).json({msg: error.message});
     }
 
@@ -58,7 +58,7 @@ const authenticate = async (req, res) => {
         })
 
     } else {
-        const error = new Error('Your password does not match, try again');
+        const error = new Error('Your password is incorrect, try again');
         return res.status(403).json({msg: error.message});
     }
 }
@@ -146,9 +146,9 @@ const newPassword = async (req, res) => {
 }
 
 const profile = async (req, res) => {
-    const {userName} = req;
+    const {user} = req;
 
-    res.json(userName)
+    res.json(user);
 }
 
 export { authenticate, register, confirm, forgottenPassword, confirmToken, newPassword, profile };
