@@ -14,6 +14,8 @@ dotenv.config();
 
 connectDB();
 
+const whitelist = ['http://localhost:3000'];
+
 // Routing
 app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
