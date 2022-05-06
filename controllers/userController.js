@@ -1,5 +1,7 @@
 import User from '../models/User.js';
 import generateId from '../helpers/generateId.js';
+import generateJWT from '../helpers/generateJWT.js';
+import { emailRegistration } from '../helpers/emails.js';
 
 const register = async (req, res) => {
     // Prevent duplicated entries
@@ -15,6 +17,14 @@ const register = async (req, res) => {
         const user = new User(req.body);
         user.token = generateId();
         await user.save();
+
+        // Send confirmation email
+        emailRegistration({
+            email: user.email,
+            userName: user.userName,
+            token: user.token
+        })
+
         res.json({msg: 'User Successfully Created, check your email to confirm your account'});
 
     } catch (error) {
@@ -40,6 +50,12 @@ const authenticate = async (req, res) => {
 
     // Check password 
     if(await user.confirmPassword(password)) {
+        res.json({
+            _id: user._id,
+            userName: user.userName,
+            email: user.email,
+            token: generateJWT(user._id)
+        })
 
     } else {
         const error = new Error('Your password does not match, try again');
@@ -48,4 +64,4 @@ const authenticate = async (req, res) => {
 
 }
 
-export { authenticate ,register };
+export { authenticate, register };
