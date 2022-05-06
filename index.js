@@ -14,7 +14,22 @@ dotenv.config();
 
 connectDB();
 
-const whitelist = ['http://localhost:3000'];
+// Configure CORS
+const whitelist = [process.env.FRONTEND_URL];
+
+const corsOptions = {
+    origin: function(origin, callback) {
+        if(whitelist.includes(origin)) {
+            // Can make api calls
+            callback(null, true);
+        } else {
+            // Access denied
+            callback(new Error('Cors error'));
+        }
+    }
+}
+
+app.use(cors(corsOptions));
 
 // Routing
 app.use('/api/users', userRoutes);
