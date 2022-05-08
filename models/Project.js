@@ -31,7 +31,7 @@ const projectsSchema = mongoose.Schema(
                 ref: 'Task'
             }
         ],
-        cooperators: [
+        collaborators: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'User'

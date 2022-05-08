@@ -1,8 +1,8 @@
 import express from 'express';
 
 import {
-    addCooperator,
-    deleteCooperator,
+    newCollaborator,
+    deleteCollaborator,
     deleteProject, 
     editProject,
     getProject,
@@ -24,7 +24,7 @@ router
         .put(checkAuth, editProject)
         .delete(checkAuth, deleteProject)
 
-router.post('/add-cooperator/:id').post(checkAuth, addCooperator);
-router.post('/delete-cooperator/:id').post(checkAuth, deleteCooperator);
+router.post('/new-collaborator/:id').post(checkAuth, newCollaborator);
+router.post('/delete-collaborator/:id').post(checkAuth, deleteCollaborator);
 
 export default router;

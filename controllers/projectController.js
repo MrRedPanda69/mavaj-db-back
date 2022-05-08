@@ -84,17 +84,17 @@ const deleteProject = async (req, res) => {
     }
 }
 
-const addCooperator = async (req, res) => {
+const newCollaborator = async (req, res) => {
 
 }
 
-const deleteCooperator = async (req, res) => {
+const deleteCollaborator = async (req, res) => {
 
 }
 
 export {
-    addCooperator,
-    deleteCooperator,
+    newCollaborator,
+    deleteCollaborator,
     deleteProject, 
     editProject,
     getProject,
