@@ -1,8 +1,6 @@
 import express from 'express';
 
 import {
-    newCollaborator,
-    deleteCollaborator,
     deleteProject, 
     editProject,
     getProject,
@@ -23,8 +21,5 @@ router
         .get(checkAuth, getProject)
         .put(checkAuth, editProject)
         .delete(checkAuth, deleteProject)
-
-router.post('/new-collaborator/:id').post(checkAuth, newCollaborator);
-router.post('/delete-collaborator/:id').post(checkAuth, deleteCollaborator);
 
 export default router;
